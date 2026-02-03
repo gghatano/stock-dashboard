@@ -1,58 +1,70 @@
 # Stock Dashboard タスクリスト
 
 > 本タスクリストは `doc/requirements.md` に基づき作成
+> 技術スタック変更: React → htmx + Jinja2, Recharts → Plotly
 
 ---
 
-## Phase 1: UI素案（ダミー表示）
+## Phase 0: Git初期化
 
-- [ ] プロジェクト初期化（Vite + React + TypeScript）
-- [ ] 基本レイアウト作成（ヘッダー、メインエリア）
-- [ ] IndexCardコンポーネント作成
-- [ ] ダミーデータでのチャート表示（Recharts）
-- [ ] 通貨切替トグル実装
-- [ ] レスポンシブ対応（PC/モバイル）
+- [x] git init
+- [x] 初期コミット（doc/のみ）
+- [x] worktree/feature-htmx ブランチ作成
 
 ---
 
-## Phase 2: FastAPI API実装
+## Phase 1: プロジェクト基盤
 
-- [ ] FastAPIプロジェクト初期化
-- [ ] /health エンドポイント実装
-- [ ] /api/indices エンドポイント実装
-- [ ] yfinanceでのデータ取得実装
-- [ ] フォールバック処理（ダミーデータ返却）
-
----
-
-## Phase 3: API連携
-
-- [ ] フロントエンドからAPI呼び出し実装
-- [ ] 取得データの画面反映
-- [ ] エラーハンドリング（isFallbackフラグ対応）
+- [x] uv init でプロジェクト初期化
+- [x] pyproject.toml に依存関係追加
+- [x] FastAPIアプリ作成
+- [x] Jinja2テンプレート設定
+- [x] 静的ファイル配信設定
+- [x] htmx CDN読み込み
 
 ---
 
-## Phase 4: 静的配信設定
+## Phase 2: UI実装
 
-- [ ] フロントエンドビルド設定
-- [ ] FastAPIで dist ディレクトリを静的配信
+- [x] base.html（レイアウト、htmx読み込み）
+- [x] index.html（ヘッダー、カードエリア）
+- [x] cards.html（IndexCard × 2）
+- [x] style.css（レスポンシブ対応）
+- [x] 通貨切替トグル（htmx hx-get）
 
 ---
 
-## Phase 5: Railwayデプロイ
+## Phase 3: データ取得・チャート
 
-- [ ] railway.toml または nixpacks.toml 作成
+- [x] yfinanceでS&P500, FANG+, USD/JPY取得
+- [x] フォールバック処理（ダミーデータ）
+- [x] Plotly で折れ線グラフ生成（HTML埋め込み）
+- [x] /api/indices エンドポイント
+- [x] /health エンドポイント
+
+---
+
+## Phase 4: htmx連携
+
+- [x] /partial/cards エンドポイント（HTML部分返却）
+- [x] 通貨切替時のカード更新
+- [x] isFallback時の警告表示
+
+---
+
+## Phase 5: デプロイ
+
+- [x] railway.toml作成
 - [ ] デプロイ実行
 - [ ] 動作確認
-- [ ] README.md に起動手順記載
+- [x] README.md に起動手順記載
 
 ---
 
 ## 完了条件（Definition of Done）
 
 - [ ] Railway URL で公開
-- [ ] 2カード + チャート表示
-- [ ] 通貨切替動作
-- [ ] データ取得失敗時もUI表示継続
-- [ ] README に起動手順記載済み
+- [x] 2カード + チャート表示
+- [x] 通貨切替動作
+- [x] データ取得失敗時もUI表示継続
+- [x] README に起動手順記載済み

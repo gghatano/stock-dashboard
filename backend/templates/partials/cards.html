@@ -1,0 +1,41 @@
+<div class="index-card">
+    <h2>S&P500</h2>
+    <div class="current-price">
+        {% if currency == 'JPY' %}
+        {{ "¥{:,.0f}".format(sp500.latest * exchange_rate) }}
+        {% else %}
+        ${{ "{:,.2f}".format(sp500.latest) }}
+        {% endif %}
+    </div>
+    <div class="price-change {% if sp500.change >= 0 %}positive{% else %}negative{% endif %}">
+        {% if sp500.change >= 0 %}+{% endif %}{{ "{:,.2f}".format(sp500.change) }}
+        ({% if sp500.change_pct >= 0 %}+{% endif %}{{ "{:.2f}".format(sp500.change_pct) }}%)
+    </div>
+    <div class="chart">
+        {{ sp500.chart | safe }}
+    </div>
+</div>
+
+<div class="index-card">
+    <h2>FANG+</h2>
+    <div class="current-price">
+        {% if currency == 'JPY' %}
+        {{ "¥{:,.0f}".format(fang.latest * exchange_rate) }}
+        {% else %}
+        ${{ "{:,.2f}".format(fang.latest) }}
+        {% endif %}
+    </div>
+    <div class="price-change {% if fang.change >= 0 %}positive{% else %}negative{% endif %}">
+        {% if fang.change >= 0 %}+{% endif %}{{ "{:,.2f}".format(fang.change) }}
+        ({% if fang.change_pct >= 0 %}+{% endif %}{{ "{:.2f}".format(fang.change_pct) }}%)
+    </div>
+    <div class="chart">
+        {{ fang.chart | safe }}
+    </div>
+</div>
+
+{% if is_fallback %}
+<div class="fallback-warning">
+    データ取得に失敗しました。ダミーデータを表示しています。
+</div>
+{% endif %}

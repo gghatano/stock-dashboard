@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>Stock Dashboard</h1>
+    <div class="header-info">
+        <span class="exchange-rate">USD/JPY: {{ exchange_rate }}</span>
+        <div class="currency-toggle">
+            <button
+                class="toggle-btn {% if currency == 'JPY' %}active{% endif %}"
+                hx-get="/partial/cards?currency=JPY"
+                hx-target="#cards-container"
+                hx-swap="innerHTML"
+            >JPY</button>
+            <button
+                class="toggle-btn {% if currency == 'USD' %}active{% endif %}"
+                hx-get="/partial/cards?currency=USD"
+                hx-target="#cards-container"
+                hx-swap="innerHTML"
+            >USD</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="cards-container" class="cards-container">
+        {% include "partials/cards.html" %}
+    </div>
+</main>
+{% endblock %}
