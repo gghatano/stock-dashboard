@@ -107,6 +107,12 @@ main {
 .chart {
     width: 100%;
     min-height: 200px;
+    overflow: hidden;
+}
+
+.chart .js-plotly-plot,
+.chart .plotly {
+    width: 100% !important;
 }
 
 .fallback-warning {
