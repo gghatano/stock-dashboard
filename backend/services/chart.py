@@ -26,7 +26,8 @@ def create_line_chart(prices: list[dict], currency: str = "USD", exchange_rate: 
     )
 
     fig.update_layout(
-        margin={"l": 40, "r": 20, "t": 20, "b": 40},
+        autosize=True,
+        margin={"l": 50, "r": 20, "t": 20, "b": 50},
         height=200,
         xaxis={
             "showgrid": False,
